@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nopinjam" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tanggalpinjamawal" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tanggalpinjamakhir" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nim" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nama" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="opt" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[CALL ListPeminjamanClaused($P{nopinjam},$P{tanggalpinjamawal},$P{tanggalpinjamakhir},$P{nim},$P{nama},$P{opt});]]>
+	</queryString>
+	<field name="No Pinjam" class="java.lang.Integer"/>
+	<field name="Tanggal" class="java.sql.Date"/>
+	<field name="NIM" class="java.lang.String"/>
+	<field name="Nama" class="java.lang.String"/>
+	<field name="No Detail" class="java.lang.Integer"/>
+	<field name="Judul Buku" class="java.lang.String"/>
+	<field name="Tanggal Kembali" class="java.sql.Date"/>
+	<field name="Status" class="java.lang.String"/>
+	<field name="User" class="java.lang.String"/>
+	<group name="Tanggal">
+		<groupExpression><![CDATA[$F{Tanggal}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<frame>
+					<reportElement mode="Opaque" x="1" y="2" width="801" height="18" backcolor="#F0E9E9"/>
+					<textField pattern="EEE, dd MMM yyyy">
+						<reportElement x="100" y="0" width="218" height="18"/>
+						<textElement verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression class="java.util.Date"><![CDATA[$F{Tanggal}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="16" y="0" width="84" height="18"/>
+						<textElement verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Transaction Date]]></text>
+					</staticText>
+				</frame>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="802" height="29"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[System Informasi Perpustakaan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="47" y="19" width="158" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[.: List Transaksi Peminjaman dan Pengembalian :.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="19" width="29" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Date: ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="1" width="802" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="15" y="0" width="55" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[No Pinjam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="0" width="129" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="0" width="33" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Detail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="0" width="198" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Judul Buku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="618" y="0" width="93" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="711" y="0" width="90" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[User]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="532" y="0" width="87" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tanggal Kembali]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="1" width="55" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{No Pinjam}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="1" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="1" width="129" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="1" width="33" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{No Detail}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="334" y="1" width="198" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Judul Buku}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="618" y="1" width="93" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="711" y="1" width="90" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{User}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd">
+				<reportElement x="532" y="1" width="87" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{Tanggal Kembali}.toString().equalsIgnoreCase( "1900-01-01")) ? "" : $F{Tanggal Kembali}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="44" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="755" y="23" width="39" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " +$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="711" y="23" width="45" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

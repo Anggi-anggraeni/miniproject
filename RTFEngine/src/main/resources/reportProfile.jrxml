@@ -238,22 +238,7 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="40">
-			<textField>
-				<reportElement x="75" y="10" width="70" height="20" uuid="73c619d5-25e3-46b3-ab19-f345662bc06f"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{personalize}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="10" width="75" height="20" uuid="83ab1b43-9a84-4292-b228-1ef26c64811f"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[:Personalize ]]></text>
-			</staticText>
-		</band>
+		<band height="40"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="17">

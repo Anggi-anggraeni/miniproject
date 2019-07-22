@@ -1,6 +1,7 @@
 package com.miniproject.ReportEngine.Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,11 +23,12 @@ import com.miniproject.ReportEngine.Service.CustService;
 @RequestMapping("/list")
 public class listCustomerController 
 {
-	@Autowired
-	RepoCust repoCust;
 	
 	@Autowired
-	CustService custService;
+	private CustService custService;
+	
+	@Autowired
+	RepoCust repoCust;
 
 	@GetMapping("getAll")
 	public List<listCustomer> getAll(){
@@ -39,15 +42,40 @@ public class listCustomerController
 		return custService.generateReport();
 	}
 	
-	@PostMapping("save")
-	public listCustomer save(@RequestBody listCustomer customer) {
-		return repoCust.save(customer);
+	@PostMapping(value = "save")
+	public String save(@RequestBody listCustomer listcustomer) {
+		try {
+			repoCust.save(listcustomer);
+			return "Berhasil Tersimpan";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Gagal Tersimpan";
+		}
 	}
 	
-	@DeleteMapping("delete/{id}")	
-	public String delete(@PathVariable int id) {
-	
-		return "berhasil dihapus";
+	@DeleteMapping(value = "delete/{id}")
+	public HashMap<String, Object> delete(@PathVariable Long id){
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		repoCust.deleteById(id);
+		result.put("message", "berhasil dihapus");
+		return result;
 	}
 
+	@PutMapping(value = "update/{id}")
+	public listCustomer update (@RequestBody listCustomer listcustomer, @PathVariable Long id) {			
+		listCustomer customerSelected = repoCust.findById(id).orElse(null) ;
+		if (customerSelected !=null) {
+			customerSelected.setName(listcustomer.getName());
+			customerSelected.setAddress(listcustomer.getAddress());
+			customerSelected.setPhone(listcustomer.getPhone());
+			customerSelected.setGender(listcustomer.getGender());
+			customerSelected.setEmail(listcustomer.getEmail());
+			customerSelected.setDateOfRegister(listcustomer.getDateOfRegister());
+			customerSelected.setActiveAccount(listcustomer.getActiveAccount());
+			repoCust.save(customerSelected);
+			return repoCust.save(customerSelected);
+		} else {
+			return null;
+		}	
+}
 }

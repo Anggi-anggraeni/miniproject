@@ -2,6 +2,7 @@ package com.miniproject.ReportEngine.Service;
 
 
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class CustService
 				
 				CustomerReport report = new CustomerReport();
 				
-				report.setId((Long)tr[0]);
+				report.setId((Integer)tr[0]);
 				report.setName((String)tr[1]);
 				report.setAddress((String)tr[2]);
 				report.setPhone((String)tr[3]);
@@ -66,7 +67,7 @@ public class CustService
 			JasperPrint jasperprint = JasperFillManager
 					.fillReport(jasperReport, map, jrBeanCollectionDataSource);
 			
-			JasperExportManager.exportReportToXmlFile(jasperprint, reportPath, true);
+			JasperExportManager.exportReportToPdfFile(jasperprint, reportPath +"\\customer_report.pdf");
 			
 			System.out.println("Done");
 			

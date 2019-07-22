@@ -1,6 +1,8 @@
 package com.miniproject.ReportEngine.Model;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,12 +30,12 @@ public class listKlaster
 	@Temporal(TemporalType.TIMESTAMP)
 
 	@Column(name="data_of_filling")
-	private String dateOfFilling;
+	private Date dateOfFilling;
 	
 	@Column(name="update_of_klaster")
 	@Temporal(TemporalType.TIMESTAMP)
 
-	private String updateOfKlaster;
+	private Date updateOfKlaster;
 
 	public Long getId() {
 		return id;
@@ -67,19 +69,19 @@ public class listKlaster
 		this.contact = contact;
 	}
 
-	public String getDateOfFilling() {
+	public Date getDateOfFilling() {
 		return dateOfFilling;
 	}
 
-	public void setDateOfFilling(String dateOfFilling) {
+	public void setDateOfFilling(Date dateOfFilling) {
 		this.dateOfFilling = dateOfFilling;
 	}
 
-	public String getUpdateOfKlaster() {
+	public Date getUpdateOfKlaster() {
 		return updateOfKlaster;
 	}
 
-	public void setUpdateOfKlaster(String updateOfKlaster) {
+	public void setUpdateOfKlaster(Date updateOfKlaster) {
 		this.updateOfKlaster = updateOfKlaster;
 	}
 

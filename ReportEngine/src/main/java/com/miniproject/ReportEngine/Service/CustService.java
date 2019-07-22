@@ -2,7 +2,7 @@ package com.miniproject.ReportEngine.Service;
 
 
 
-import java.math.BigInteger;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -54,20 +54,20 @@ public class CustService
 			String reportPath ="E:\\miniProject\\ReportEngine\\src\\main\\resources";
 					
 			JasperReport jasperReport = JasperCompileManager
-					.compileReport(reportPath+"\\customer_report.jrxml");
+					.compileReport(reportPath+"\\customer_profile.jrxml");
 			
 		
 			JRBeanCollectionDataSource jrBeanCollectionDataSource = 
 					new JRBeanCollectionDataSource(reportList);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("createdBy", "NH Anggraeni");
+		//	map.put("createdBy", "NH Anggraeni");
 
 			
 			JasperPrint jasperprint = JasperFillManager
 					.fillReport(jasperReport, map, jrBeanCollectionDataSource);
 			
-			JasperExportManager.exportReportToPdfFile(jasperprint, reportPath +"\\customer_report.pdf");
+			JasperExportManager.exportReportToPdfFile(jasperprint, reportPath +"\\customer_profile.pdf");
 			
 			System.out.println("Done");
 			

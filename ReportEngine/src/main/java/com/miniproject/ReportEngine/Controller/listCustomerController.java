@@ -53,16 +53,16 @@ public class listCustomerController
 		}
 	}
 	
-	@DeleteMapping(value = "delete/{id}")
-	public HashMap<String, Object> delete(@PathVariable Long id){
+	@DeleteMapping(value = "/{id}")
+	public HashMap<String, Object> delete(@PathVariable Integer id){
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		repoCust.deleteById(id);
 		result.put("message", "berhasil dihapus");
 		return result;
 	}
 
-	@PutMapping(value = "update/{id}")
-	public listCustomer update (@RequestBody listCustomer listcustomer, @PathVariable Long id) {			
+	@PutMapping(value = "/{id}")
+	public listCustomer update (@RequestBody listCustomer listcustomer, @PathVariable Integer id) {			
 		listCustomer customerSelected = repoCust.findById(id).orElse(null) ;
 		if (customerSelected !=null) {
 			customerSelected.setName(listcustomer.getName());

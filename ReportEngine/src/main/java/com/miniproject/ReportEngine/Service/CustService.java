@@ -54,20 +54,20 @@ public class CustService
 			String reportPath ="E:\\miniProject\\ReportEngine\\src\\main\\resources";
 					
 			JasperReport jasperReport = JasperCompileManager
-					.compileReport(reportPath+"\\customer_profile.jrxml");
+					.compileReport(reportPath+"\\person.jrxml");
 			
 		
 			JRBeanCollectionDataSource jrBeanCollectionDataSource = 
 					new JRBeanCollectionDataSource(reportList);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
-		//	map.put("createdBy", "NH Anggraeni");
+	//		map.put("createdBy", "NH Anggraeni");
 
 			
 			JasperPrint jasperprint = JasperFillManager
 					.fillReport(jasperReport, map, jrBeanCollectionDataSource);
 			
-			JasperExportManager.exportReportToPdfFile(jasperprint, reportPath +"\\customer_profile.pdf");
+			JasperExportManager.exportReportToPdfFile(jasperprint, reportPath +"\\person.pdf");
 			
 			System.out.println("Done");
 			

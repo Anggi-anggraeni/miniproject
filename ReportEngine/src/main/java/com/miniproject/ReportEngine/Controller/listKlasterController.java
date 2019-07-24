@@ -17,21 +17,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.miniproject.ReportEngine.Model.listKlaster;
 import com.miniproject.ReportEngine.Repo.RepoKlas;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
-@RequestMapping("/klaster")
+//@RequestMapping("/klaster")
+
+@RequestMapping(value="/miniprojectapi/v1")
+@Api(tags = "Data Klaster")
 public class listKlasterController
 {
 	@Autowired
 	RepoKlas repoKlas;
 	
-	@GetMapping("getAll")
+	//postman
+//	@GetMapping("getAll")
+	
+	@GetMapping("/klas")
+	@ApiOperation(
+			value = "API to retrieve all klaster's data",
+			notes = "Return data with JSON format",
+			tags = "Get Data API"
+			)
 	public List<listKlaster> getAll(){
 		List<listKlaster>result = new ArrayList<>();
 		repoKlas.findAll().forEach(result::add);
 		return result;
 	}
 	
-	@PostMapping(value = "save")
+	//postman
+//	@PostMapping(value = "save")
+	
+	@PostMapping("/klas")
+	@ApiOperation(
+			value = "Add new klaster data",
+			notes = "Add new klaster data to database",
+			tags = "Data Manipulation API"
+			)
+	
 	public String save(@RequestBody listKlaster listklaster) {
 		try {
 			repoKlas.save(listklaster);
@@ -42,7 +65,17 @@ public class listKlasterController
 		}
 	}
 	
-	@DeleteMapping(value = "/{id}")
+	
+	//postman
+//	@DeleteMapping(value = "/{id}")
+	
+	@DeleteMapping(value = "/klas/{id}")
+	@ApiOperation(
+			value = "Delete klaster data",
+			notes = "Delete klaster data based on provided ID and remove data",
+			tags = "Data Manipulation API"
+			)
+	
 	public HashMap<String, Object> delete(@PathVariable Integer id){
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		repoKlas.deleteById(id);
@@ -50,7 +83,16 @@ public class listKlasterController
 		return result;
 	}
 
-	@PutMapping(value = "/{id}")
+	//postman
+//	@PutMapping(value = "/{id}")
+	
+	@ApiOperation(
+			value = "Update klaster data",
+			notes = "Update klaster data based on provided ID and attached data",
+			tags = "Data Manipulation API"
+			)
+	@PutMapping("/klas/{id}")
+	
 	public listKlaster update (@RequestBody listKlaster listklaster, @PathVariable Integer id) {			
 		listKlaster klasterSelected = repoKlas.findById(id).orElse(null) ;
 		if (klasterSelected !=null) {

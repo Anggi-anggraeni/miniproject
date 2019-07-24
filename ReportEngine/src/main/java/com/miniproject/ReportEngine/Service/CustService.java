@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.miniproject.ReportEngine.Model.CustomerReport;
+import com.miniproject.ReportEngine.Model.listCustomer;
 import com.miniproject.ReportEngine.Repo.RepoCust;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -62,11 +63,11 @@ public class CustService
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 	//		map.put("createdBy", "NH Anggraeni");
-
+			map.put("gambar",listCustomer.class.getResourceAsStream("/ReportEngine/index1.jpg"));
 			
 			JasperPrint jasperprint = JasperFillManager
 					.fillReport(jasperReport, map, jrBeanCollectionDataSource);
-			
+		
 			JasperExportManager.exportReportToPdfFile(jasperprint, reportPath +"\\person.pdf");
 			
 			System.out.println("Done");

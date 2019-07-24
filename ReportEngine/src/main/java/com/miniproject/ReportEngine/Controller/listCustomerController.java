@@ -19,8 +19,16 @@ import com.miniproject.ReportEngine.Model.listCustomer;
 import com.miniproject.ReportEngine.Repo.RepoCust;
 import com.miniproject.ReportEngine.Service.CustService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
-@RequestMapping("/list")
+
+//@RequestMapping("/list")
+
+//swagger
+@RequestMapping(value="/miniprojectapi/v1")
+@Api(tags = "Data Profile")
 public class listCustomerController 
 {
 	
@@ -30,7 +38,15 @@ public class listCustomerController
 	@Autowired
 	RepoCust repoCust;
 
-	@GetMapping("getAll")
+	// postman
+//	@GetMapping("getAll")
+	
+	@GetMapping("/cust")
+	@ApiOperation(
+			value = "API to retrieve all customer's data",
+			notes = "Return data with JSON format",
+			tags = "Get Data API"
+			)
 	public List<listCustomer> getAll(){
 		List<listCustomer> result = new ArrayList<>();
 		repoCust.findAll().forEach(result::add);
@@ -42,7 +58,16 @@ public class listCustomerController
 		return custService.generateReport();
 	}
 	
-	@PostMapping(value = "save")
+	//postman
+//	@PostMapping(value = "save")
+	
+	@PostMapping("/cust")
+	@ApiOperation(
+			value = "Add new customer data",
+			notes = "Add new customer data to database",
+			tags = "Data Manipulation API"
+			)
+	
 	public String save(@RequestBody listCustomer listcustomer) {
 		try {
 			repoCust.save(listcustomer);
@@ -53,7 +78,15 @@ public class listCustomerController
 		}
 	}
 	
-	@DeleteMapping(value = "/{id}")
+	//postman
+//	@DeleteMapping(value = "/{id}")
+	
+	@DeleteMapping(value = "/cust/{id}")
+	@ApiOperation(
+			value = "Delete customer data",
+			notes = "Delete customer data based on provided ID and remove data",
+			tags = "Data Manipulation API"
+			)
 	public HashMap<String, Object> delete(@PathVariable Integer id){
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		repoCust.deleteById(id);
@@ -61,7 +94,15 @@ public class listCustomerController
 		return result;
 	}
 
-	@PutMapping(value = "/{id}")
+	//postman
+//	@PutMapping(value = "/{id}")
+	
+	@ApiOperation(
+			value = "Update customer data",
+			notes = "Update customer data based on provided ID and attached data",
+			tags = "Data Manipulation API"
+			)
+	@PutMapping("/cust/{id}")
 	public listCustomer update (@RequestBody listCustomer listcustomer, @PathVariable Integer id) {			
 		listCustomer customerSelected = repoCust.findById(id).orElse(null) ;
 		if (customerSelected !=null) {
